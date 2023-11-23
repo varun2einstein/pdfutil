@@ -1,0 +1,22 @@
+apiVersion: "apps/v1"
+kind: "Deployment"
+metadata:
+  name: "pdf-service"
+  namespace: "default"
+  labels:
+    app: "pdf-service"
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: "pdf-service"
+  template:
+    metadata:
+      labels:
+        app: "pdf-service"
+    spec:
+      containers:
+      - name: "pdfoperations-service-sha256-1"
+        image: "varun2einstein/pdfoperations-service"
+        ports:
+        - containerPort: 8080

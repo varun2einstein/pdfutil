@@ -1,0 +1,26 @@
+apiVersion: "apps/v1"
+kind: "Deployment"
+metadata:
+  name: "nginx-1"
+  namespace: "default"
+  labels:
+    app: "nginx-1"
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: "nginx-1"
+  template:
+    metadata:
+      labels:
+        app: "nginx-1"
+    spec:
+      containers:
+      - name: "pdfoperations-service-sha256-1"
+        image: "us-central1-docker.pkg.dev/pdfutils-359816/vaar/pdfoperations-service@sha256:ea8d16957849a4e9865bf602311bd1f4d8c59351b13fe4767aac71ee9f558499"
+        ports:
+        - containerPort: 8080    
+      - name: "pdfoperations-ui-sha256-2"
+        image: "us-central1-docker.pkg.dev/pdfutils-359816/vaar/pdfoperations-ui@sha256:05ca5cbc5f7166ee66d7182f1dcfeebe946672494f39b68fde511021b687e3a0"
+        ports:
+        - containerPort: 80            
